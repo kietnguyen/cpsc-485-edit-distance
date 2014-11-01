@@ -1,0 +1,91 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bioinformatics - Edit Distance Algorithm</title>
+
+  <!-- DEFAULT USER INTERFACE SYSTEM FROM JQUERYMOBILE -->
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.css" />
+  <link rel="stylesheet" href="http://jquerymobile.com/demos/1.1.0/docs/_assets/css/jqm-docs.css" />
+
+  <!-- SOME CUSTOM LAY-OUT/MARK-UP -->
+  <link rel="stylesheet" href="css/playground.css" />
+
+  <!-- JQUERY & JQUERYMOBILE LIBRARY -->
+  <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+
+  <script>$.mobile.showPageLoadingMsg();</script>
+</head>
+<body>
+  <div data-role="page" id="jqm-home" class="type-home">
+    <div data-role="heasder" data-theme="a">
+      <h2>Bioinformatics Playground</h2>
+    </div>
+
+    <!-- MENU LIST -->
+    <div data-role="content">
+      <div class="content-secondary">
+        <nav>
+          <ul data-role="listview" data-theme="c">
+            <li><a href="#">Edit Distance</a></li>
+          </ul>
+        </nav>
+      </div><!-- end content-secondary -->
+
+      <div class="content-primary">
+        <!-- INPUT FORM -->
+        <form name="inputStrings" action="playground.php" method="post">
+          <div data-role="fieldcontain">
+            <label for="str1">First string:</label>
+            <input type="text" name="str1" id="str1" value="" />
+            <label for="str2">Second string:</label>
+            <input type="text" name="str2" id="str2" value="" />
+            <input type="hidden" name="probType" id="probType" value="editDistance" />
+            <div class="ui-grid-a">
+              <div class="ui-block-a">
+                <button type="reset" name="resetBtn" id="resetBtn">Reset</button>
+              </div>
+              <div class="ui-block-b">
+                <button type="submit" name="solveBtn" id="solveBtn" data-theme="a">Solve</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- SOLUTION -->
+        <div id="answer" style="height:100%; overflow:auto"></div>
+      </div><!-- end content-primary -->
+    </div><!-- end content -->
+  </div><!-- end page -->
+
+<script>
+  // OVERRIDE DEFAULT BEHAVIOUR
+  $('#solveBtn').click(function(event) {
+    $.mobile.showPageLoadingMsg();
+    event.preventDefault();
+    $("#answer").html('');
+    var form = $('form[name=inputStrings]');
+    $.ajax({
+      url: form.attr('action'),
+      data: form.serialize(),
+      type: 'post',
+      dataType: 'text',
+      success: function(data){
+        $.mobile.hidePageLoadingMsg();
+
+        //$("#str1").attr('value',"");
+        //$("#str2").attr('value',"");
+        $("#answer").html(data);
+      },
+      error: function(request,error){
+        $.mobile.hidePageLoadingMsg();
+
+        //console.log(arguments);
+        $("#answer").html('Error while retrieving solution from sever!<br />You might have the inputs exceed supported length.');
+      }
+    });
+  });
+</script>
+</html>
+</body>

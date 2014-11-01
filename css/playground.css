@@ -1,0 +1,83 @@
+#answer {
+  font-family: "Courier New";
+  font-size: 17px;
+}
+
+table {
+  border: 1px solid black;
+  border-spacing: 0px;
+  padding: 0px;
+  td {
+    height:36px;
+  };
+  tr {
+    width:36px;
+  };
+}
+
+.tableStr{
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tableStrHorizon{
+  height: 24px;
+}
+
+.tableStrVertical{
+  width: 24px;
+}
+
+.pathVertex{
+  background-color: yellow;
+}
+
+.pathDia {
+  left: 0px;
+  width: 32px;
+  height: 36px;
+  background: url('images/img_arrows.png') 0 0;
+  background-repeat: no-repeat;
+}
+
+.pathLeft {
+  left: 32px;
+  width: 32px;
+  height: 36px;
+  background: url('images/img_arrows.png') -32px 0;
+  background-repeat: no-repeat;
+}
+
+.pathUp{
+  left: 64px;
+  width: 32px;
+  height: 36px;
+  background: url('images/img_arrows.png') -64px 0;
+  background-repeat: no-repeat;
+}
+
+.pathFinal{
+  background-color: yellow;
+}
+
+.score{
+  position: relative;
+  top: 10px;
+  text-align: right;
+}
+
+.scoreFinal{
+  font-weight: bold;
+}
+
+@media all and (min-width: 450px) {
+  .ui-field-contain input.ui-input-text, .ui-field-contain textarea.ui-input-text, .ui-field-contain .ui-input-search {
+    width: 76%;
+  }
+  
+  .ui-field-contain label.ui-input-text {
+    vertical-align: middle;
+  }
+}
